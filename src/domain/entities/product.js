@@ -9,7 +9,7 @@ class product {
   }
 
   validate() {
-    if (!this.name || this.name.trim() === "")
+    if (!this.name || this.name.trim() === " ")
       throw new Error("Product name requires a string");
     if (this.price <= 0)
       throw new Error("Product price must be greater that zero");

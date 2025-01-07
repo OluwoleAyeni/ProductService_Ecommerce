@@ -1,5 +1,5 @@
 class productRepository {
-  async addProduct(product) {
+  async addProduct(ProductData) {
     throw new Error("addProduct() not implemented");
   }
 
