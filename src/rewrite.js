@@ -1,20 +1,43 @@
 class product {
-    constructor({ id, name, price, description, review, comment }) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.review = review;
-        this.comment = comment;
+  constructor({ id, name, price, description, review, comment }) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.description = description;
+    this.review = review;
+    this.comment = comment;
 
-        this.validate();
-    }
+    this.validate();
+  }
 
-    validate() {
-        if (!this.name || this.name === '') throw new Error('Product can not be empty');
-        if (this.price <= 0) throw new Error('Price can not zero');
-    }
+  validate() {
+    if (!this.name || this.name === "")
+      throw new Error("Product can not be empty");
+    if (this.price <= 0) throw new Error("Price can not zero");
+  }
 }
 
 module.exports = product;
 
+// productRepository
+class productRepository {
+  async addProduct(productData) {
+    throw new Error("addProduct not implement");
+  }
+}
+
+module.exports = productRepository;
+
+// Use case
+
+class addProductUscase {
+  constructor(productRepository) {
+    this.productRepository = productRepository;
+  }
+
+  async excute(productData) {
+    return await this.productRepository.addProduct(productData);
+  }
+}
+
+module.exports = addProductUscase;
