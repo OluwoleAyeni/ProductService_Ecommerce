@@ -1,11 +1,11 @@
 const express = require("express");
-const connectDB = require("../Framework/Database/config");
-const ProductModel = reqiure("../Framework/Database/ProductModel");
-const DataRepository = require("/Framework/Database/dataRepository");
-const addProductUsecase = require("../Usecases/addProductUsecase");
-const getAllProductsUsecase = require("../Usecases/GetAllProductUsecase");
-const getProductbyIdUsecase = require("../Usecases/getProductbyIdUsecase");
-const ProductRoutes = require("../web/routes");
+const connectDB = require("./Framework/Database/config.js");
+const ProductModel = require("./Framework/Database/ProductModel.js");
+const DataRepository = require("./Framework/Database/dataRepository.js");
+const addProductUsecase = require("./Usecases/addProductUsecase.js");
+const getAllProductsUsecase = require("./Usecases/getAllProductsUsecase.js");
+const getProductbyIdUsecase = require("./Usecases/getProductbyId.js");
+const ProductRoutes = require("./Framework/web/routes.js");
 
 (async () => {
   // Connect to MongoDB
@@ -13,7 +13,7 @@ const ProductRoutes = require("../web/routes");
 
   // Dependency Injection
   const productRepository = new DataRepository(ProductModel);
-  const useCases = {
+  const Usecases = {
     addProductUseCase: new addProductUsecase(productRepository),
     getAllProductsUseCase: new getAllProductsUsecase(productRepository),
     getProductByIdUseCase: new getProductbyIdUsecase(productRepository),

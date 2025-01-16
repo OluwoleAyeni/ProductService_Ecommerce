@@ -1,4 +1,4 @@
-class addProductUscase {
+class addProductUsecase {
   constructor(productRepository) {
     this.productRepository = productRepository;
   }
@@ -8,4 +8,4 @@ class addProductUscase {
   }
 }
 
-module.exports = addProductUscase;
+module.exports = addProductUsecase;

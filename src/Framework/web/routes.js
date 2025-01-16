@@ -1,9 +1,9 @@
 const express = require("express");
-const productController = require("../Controller/ProductController");
+const ProductController = require("../../Interface/Controller/ProductController");
 const { productRepository, Usecase } = require("../../main");
 
 const router = express.Router();
-const productController = new Productcontroller(Usecase);
+const productController = new ProductController(Usecase);
 
 router.post("/products", (req, res) => productController.addProduct(req, res));
 router.get("/products", (req, res) =>

@@ -1,4 +1,4 @@
-class getAllProductUsecase {
+class getAllProductsUsecase {
   constructor(productRepository) {
     this.productRepository = productRepository;
   }
@@ -8,4 +8,4 @@ class getAllProductUsecase {
   }
 }
 
-module.export = getAllProductUsecase;
+module.export = getAllProductsUsecase;

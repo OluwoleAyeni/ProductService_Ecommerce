@@ -1,40 +1,39 @@
-class productController {
-  constructor({
-    addProductUscase,
-    getAllProductUsecase,
-    getProductByIdUsecase,
-  }) {
-    this.addProductUscase = addProductUscase;
-    this.getAllProductUsecase = getAllProductUsecase;
-    this.getProductByIdUsecase = getProductByIdUsecase;
+class ProductController {
+  constructor(useCases) {
+    this.useCases = useCases;
   }
 
   async addProduct(req, res) {
     try {
-      const result = await this.addProductUscase.excute(req.body);
-      res.status(201).json(result);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
+      const product = await this.useCases.addProductUseCase.execute(req.body);
+      res.status(201).json(product);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
     }
   }
 
   async getAllProducts(req, res) {
     try {
-      const result = await this.getAllProductUsecase.excute();
-      res.status(201).json(result);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
+      const products = await this.useCases.getAllProductsUseCase.execute();
+      res.status(200).json(products);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
   }
 
-  async getProductbyId(req, res) {
+  async getProductById(req, res) {
     try {
-      const result = await this.getProductByIdUsecase.excute(req.params.id);
-      res.status(201).json(result);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
+      const product = await this.useCases.getProductByIdUseCase.execute(
+        req.params.id
+      );
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+      res.status(200).json(product);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
   }
 }
 
-module.exports = productController;
+module.exports = ProductController;
